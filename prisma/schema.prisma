@@ -14,15 +14,16 @@ datasource db {
 
 model User {
   id             Int        @id @default(autoincrement())
-  fullname       String
-  email          String     @unique
-  username       String     @unique
-  password       String
-  bio            String
-  image          String
-  followingCount Int        @default(0)
-  followerCount  Int        @default(0)
-  postCount      Int        @default(0)
+  fullname       String     @db.VarChar(255)
+  email          String     @unique @db.VarChar(255)
+  username       String     @unique @db.VarChar(255)
+  password       String     @db.VarChar(255)
+  bio            String?    @db.Text
+  image          String?    @db.VarChar(255)
+  imageId        String?    @db.VarChar(255)
+  followingCount Int        @default(0) @db.Integer
+  followerCount  Int        @default(0) @db.Integer
+  postCount      Int        @default(0) @db.Integer
   createAt       DateTime   @default(now())
   posts          Post[]
   comments       Comment[]
@@ -36,8 +37,8 @@ model Post {
   id           Int        @id @default(autoincrement())
   userId       Int
   user         User       @relation(fields: [userId], references: [id])
-  image        String?
-  imageId      String?
+  image        String
+  imageId      String
   caption      String
   commentCount Int        @default(0)
   likeCount    Int        @default(0)
@@ -53,7 +54,7 @@ model Comment {
   user     User     @relation(fields: [userId], references: [id])
   postId   Int
   post     Post     @relation(fields: [postId], references: [id])
-  content  String
+  content  String   @db.Text
   createAt DateTime @default(now())
 }
 
