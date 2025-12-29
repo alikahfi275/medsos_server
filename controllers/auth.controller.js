@@ -138,3 +138,14 @@ export const Login = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+export const GetUser = async (req, res) => {
+  try {
+    return res.status(200).json({
+      message: "Get User Success",
+      data: req.user,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
