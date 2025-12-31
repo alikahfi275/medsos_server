@@ -8,6 +8,4 @@ AuthRouter.post("/register", Register);
 
 AuthRouter.post("/login", Login);
 
-AuthRouter.get("/me", AuthMiddleware, GetUser);
-
 export default AuthRouter;

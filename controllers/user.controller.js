@@ -119,6 +119,8 @@ export const putUpdateUser = async (req, res) => {
 };
 
 export const putUpdateAvatar = async (req, res) => {
+  console.log(req);
+  console.log(res);
   try {
     // validation
     if (!req.file) {

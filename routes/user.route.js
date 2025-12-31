@@ -14,12 +14,13 @@ userRouter.get("/search", getSearchUser);
 
 userRouter.get("/:username", getUserByUsername);
 
-userRouter.put("/update-user", AuthMiddleware, putUpdateUser, putUpdateAvatar);
+userRouter.put("/update-user", AuthMiddleware, putUpdateUser);
 
 userRouter.put(
   "/update-user-photo",
   AuthMiddleware,
-  uploadPhoto.single("image")
+  uploadPhoto.single("image"),
+  putUpdateAvatar
 );
 
 export default userRouter;
